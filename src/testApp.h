@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxTuio.h"
+#include "ofxXmlSettings.h"
 
 
 class testApp : public ofBaseApp{
@@ -28,6 +29,7 @@ class testApp : public ofBaseApp{
     void	drawCursor(ofxTuioCursor & tuioCursor);
 		void drawCorners();
 		void calibrate();
+		void save();
 
     enum State{
       WAITING,
@@ -41,4 +43,6 @@ class testApp : public ofBaseApp{
     ofPoint _firstPointTuio;
     ofPoint _secondPointTuio;
     float _ax, _bx, _ay, _by;
+
+    ofxXmlSettings _xml;
 };

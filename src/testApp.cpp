@@ -11,6 +11,15 @@ void testApp::setup(){
   _firstPoint.set(100, 100);
   _secondPoint.set(1920-100, 1080-100);
 
+	if( _xml.loadFile("settings.xml") ){
+		cout << "settings.xml loaded!" << endl;
+	}else{
+		cout << "unable to load settings.xml check data/ folder";
+	}
+  _ax = _xml.getValue("FUNCTIONS:AFFINE_X:A", 0);
+  _bx = _xml.getValue("FUNCTIONS:AFFINE_X:B", 0);
+  _ay = _xml.getValue("FUNCTIONS:AFFINE_Y:A", 0);
+  _by = _xml.getValue("FUNCTIONS:AFFINE_Y:B", 0);
 }
 
 //--------------------------------------------------------------
@@ -59,6 +68,9 @@ void testApp::drawCorners(){
 void testApp::keyPressed(int key){
   if(key == 'f'){
     ofToggleFullscreen();
+  }
+  else if(key == 's'){
+    save();
   }
   else if(key == ' '){
     if (_state == WAITING){
@@ -148,5 +160,15 @@ void testApp::calibrate(){
   _bx = _firstPoint.x - (_ax * _firstPointTuio.x);
   _ay = (_firstPoint.y - _secondPoint.y) / (_firstPointTuio.y - _secondPointTuio.y);
   _by = _firstPoint.y - (_ay * _firstPointTuio.y);
+}
+
+//--------------------------------------------------------------
+void testApp::save(){
+  _xml.setValue("FUNCTIONS:AFFINE_X:A", _ax);
+  _xml.setValue("FUNCTIONS:AFFINE_X:B", _bx);
+  _xml.setValue("FUNCTIONS:AFFINE_Y:A", _ay);
+  _xml.setValue("FUNCTIONS:AFFINE_Y:B", _by);
+  _xml.saveFile("settings.xml");
+  cout << "settings saved" << endl;
 }
 
