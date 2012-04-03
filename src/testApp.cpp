@@ -9,7 +9,7 @@ void testApp::setup(){
 	tuioClient.start(3333);
 
   _firstPoint.set(100, 100);
-  _secondPoint.set(ofGetWidth()-100, ofGetHeight()-100);
+  _secondPoint.set(1920-100, 1080-100);
 
 }
 
@@ -54,7 +54,7 @@ void testApp::drawCorners(){
       break;
   }
 }
-      
+
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
   if(key == 'f'){
@@ -103,12 +103,12 @@ void testApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void testApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
 //--------------------------------------------------------------
-void testApp::tuioAdded(ofxTuioCursor &tuioCursor){	
+void testApp::tuioAdded(ofxTuioCursor &tuioCursor){
   if (_state == FIRSTPOINT){
     _firstPointTuio.set(tuioCursor.getX(), tuioCursor.getY());
     _state = SECONDPOINT;
