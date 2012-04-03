@@ -11,10 +11,10 @@ void testApp::setup(){
   _firstPoint.set(100, 100);
   _secondPoint.set(1920-100, 1080-100);
 
-	if( _xml.loadFile("settings.xml") ){
-		cout << "settings.xml loaded!" << endl;
+	if( _xml.loadFile("mapToScreen.xml") ){
+		cout << "mapToScreen.xml loaded!" << endl;
 	}else{
-		cout << "unable to load settings.xml check data/ folder";
+		cout << "unable to load mapToScreen.xml check data/ folder";
 	}
   _ax = _xml.getValue("FUNCTIONS:AFFINE_X:A", 0);
   _bx = _xml.getValue("FUNCTIONS:AFFINE_X:B", 0);
@@ -168,7 +168,7 @@ void testApp::save(){
   _xml.setValue("FUNCTIONS:AFFINE_X:B", _bx);
   _xml.setValue("FUNCTIONS:AFFINE_Y:A", _ay);
   _xml.setValue("FUNCTIONS:AFFINE_Y:B", _by);
-  _xml.saveFile("settings.xml");
+  _xml.saveFile("mapToScreen.xml");
   cout << "settings saved" << endl;
 }
 
